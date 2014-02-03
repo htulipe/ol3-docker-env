@@ -7,15 +7,13 @@ It uses [Docker](http://docker.io) to provide you with a clean Ubuntu LTS (preci
 
 Requirements:
 -------------
+
 Docker (made with version 0.7.6)
 
+It is assumed that you know what Docker is (if not go check their website, which has some nice [tutorials](http://www.docker.io/gettingstarted/)). It is also assumed that you already have a cloned fork of OpenLayers 3.
     
 Setup
 -----
-
-All you need to do is launch the `htipule/ol3` docker image
-
-We will be using the `docker run` command with several options. As a shorthand, you can execute the `sample.sh` script to launch the image.
 
     ./sample.sh <path_to_your_ol3_repo>
 
@@ -32,7 +30,7 @@ Build the image
 
 Start by cloning this repo. 
 
-    git clone https:://github.com/ol3-docker-env
+    git clone https://github.com/ol3-docker-env
   
 Then `cd` into the `ol3-docker-env` directory and build the image with the following command
 
