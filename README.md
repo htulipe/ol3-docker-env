@@ -19,7 +19,7 @@ Setup
 
 Here is what `sample.sh` does:
 
-- `docker run` the htulipe/ol3 image (see bellow for building this image)
+- `docker run` the htipule/ol3 image (see bellow for building this image)
 - With an interactive bash session
 - Forward container ports 8000, 9810 and 22 to the same port of your host (expect for 22 which is forwarded to 2200)
 - mount `<path_to_your_ol3_repo>` to `/workspace`
