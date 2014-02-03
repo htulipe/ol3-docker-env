@@ -42,3 +42,10 @@ RUN pip install http://closure-linter.googlecode.com/files/closure_linter-latest
 RUN git clone https://github.com/jsdoc3/jsdoc
 RUN cd jsdoc && git checkout v3.2.2 
 RUN ln -s /jsdoc/jsdoc /usr/bin/jsdoc	
+
+#Install ssh
+RUN apt-get -y --force-yes install openssh-server
+RUN mkdir /var/run/sshd
+RUN echo "root:root" | chpasswd 
+
+#ENTRYPOINT ['/usr/sbin/sshd']
