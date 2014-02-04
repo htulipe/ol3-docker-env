@@ -31,9 +31,6 @@ Here is what `setup.sh` does:
 - mounts `<path_to_your_ol3_repo>` to `/workspace`
 
 
-SSH & Playing around
---------------------
-
 After running `setup.sh`, you should be on the container prompt as root. Since this container does not provide much tools, I suggest you use SSH to connect to it.
 
 For that, you need to start sshd in the container:
