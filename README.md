@@ -3,12 +3,19 @@ Turn key dev env for OpenLayers 3
 
 This project aims to provide a turnkey development environment for [OpenLayers 3](https://github.com/openlayers/ol3). 
 
-It uses [Docker](http://docker.io) to provide you with a clean Ubuntu LTS (precise) with all dependencies required to build OpenLayers 3.
+It uses [Docker](http://docker.io) to provide you with a clean Ubuntu LTS (precise) with all dependencies required to build OpenLayers 3. Those dependencies include:
+
+- OpenJDK 7 (jdk and jre)
+- Python 2.7
+- Git
+- PhantomJS (1.9.7)
+- Pip (and [required modules](https://github.com/openlayers/ol3/blob/master/requirements.txt))
+- JsDoc (3.2.2)
 
 Requirements
 ------------
 
-Docker (made with version 0.7.6)
+Docker (the image was made with version 0.7.6)
 
 It is assumed that you know what Docker is (if not go check their website, which has some nice [tutorials](http://www.docker.io/gettingstarted/)). It is also assumed that you already have a cloned fork of OpenLayers 3.
     
