@@ -5,8 +5,8 @@ This project aims to provide a turnkey development environment for [OpenLayers 3
 
 It uses [Docker](http://docker.io) to provide you with a clean Ubuntu LTS (precise) with all dependencies required to build OpenLayers 3.
 
-Requirements:
--------------
+Requirements
+------------
 
 Docker (made with version 0.7.6)
 
@@ -15,8 +15,11 @@ It is assumed that you know what Docker is (if not go check their website, which
 Setup
 -----
 
+Pull the image
+
     docker pull htipule/ol3
 
+Then
 
     ./setup.sh <path_to_your_ol3_repo>
 
@@ -25,7 +28,7 @@ Here is what `setup.sh` does:
 - `docker run` the htipule/ol3 image
 - With an interactive bash session
 - Forward container ports 8000, 9810 and 22 to the same port of your host (expect for 22 which is forwarded to 2200)
-- mount `<path_to_your_ol3_repo>` to `/workspace`
+- mounts `<path_to_your_ol3_repo>` to `/workspace`
 
 
 SSH & Playing around
@@ -69,5 +72,6 @@ Then `cd` into the `ol3-docker-env` directory and build the image with the follo
 Knwon issues
 ------------
 
-If your OpenLayers 3 fork reside on a NTFS partition, you won't be able to execute `build.py`. this is due to differences between NFS permissions and Unix permissions.
+If your OpenLayers 3 fork resides on a NTFS partition, you won't be able to execute `build.py`. This is due to differences between NFS permissions and Unix permissions.
+
     
