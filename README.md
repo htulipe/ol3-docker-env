@@ -73,7 +73,7 @@ Then `cd` into the `ol3-docker-env` directory and build the image with the follo
 
     sudo docker build -t htipule/ol3 .
     
-Knwon issues
+Known issues
 ------------
 
 If your OpenLayers 3 fork resides on a NTFS partition, you won't be able to execute `build.py`. This is due to differences between NFS permissions and Unix permissions.
