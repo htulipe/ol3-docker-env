@@ -15,18 +15,48 @@ It is assumed that you know what Docker is (if not go check their website, which
 Setup
 -----
 
-    ./sample.sh <path_to_your_ol3_repo>
+    docker pull htipule/ol3
 
-Here is what `sample.sh` does:
 
-- `docker run` the htipule/ol3 image (see bellow for building this image)
+    ./setup.sh <path_to_your_ol3_repo>
+
+Here is what `setup.sh` does:
+
+- `docker run` the htipule/ol3 image
 - With an interactive bash session
 - Forward container ports 8000, 9810 and 22 to the same port of your host (expect for 22 which is forwarded to 2200)
 - mount `<path_to_your_ol3_repo>` to `/workspace`
 
 
+SSH & Playing around
+--------------------
+
+After running `setup.sh`, you should be on the container prompt as root. Since this container does not provide much tools, I suggest you use SSH to connect to it.
+
+For that, you need to start sshd in the container:
+
+    /usr/sbin/sshd
+        
+Then you can connect with:
+
+    ssh root@127.0.0.1 -p 2200
+    
+Password is `root`.
+
+The directory you provided to `setup.sh` is located in `/worksapce`. From there you can launch the OpenLayers build script (`build.py`). For instance, to launch the examples:
+
+    cd /worksapce
+    ./build.py serve &
+    python -mSimpleHTTPServer &
+
+Now, on your host machine, you can go to http://localhost:8000 and browse the `example` directory.
+
+
 Build the image
 ---------------
+
+You also can build the image yourself if your want.
+
 
 Start by cloning this repo. 
 
@@ -35,4 +65,9 @@ Start by cloning this repo.
 Then `cd` into the `ol3-docker-env` directory and build the image with the following command
 
     sudo docker build -t htipule/ol3 .
+    
+Knwon issues
+------------
+
+If your OpenLayers 3 fork reside on a NTFS partition, you won't be able to execute `build.py`. this is due to differences between NFS permissions and Unix permissions.
     
