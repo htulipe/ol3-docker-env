@@ -48,4 +48,13 @@ RUN apt-get -y --force-yes install openssh-server
 RUN mkdir /var/run/sshd
 RUN echo "root:root" | chpasswd 
 
-#ENTRYPOINT ['/usr/sbin/sshd']
+#Install supervisord
+RUN pip install supervisor
+
+#Add supervisord.conf file
+ADD files/supervisord.conf /etc/supervisord.conf
+
+WORKDIR /workspace
+
+CMD ["supervisord", "-c", "/etc/supervisord.conf","-n"]
+
