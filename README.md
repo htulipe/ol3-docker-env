@@ -28,9 +28,9 @@ Pull the image
 
 Then
 
-    ./setup.sh <path_to_your_ol3_repo>
+    ./run.sh <path_to_your_ol3_repo>
 
-Here is what `setup.sh` does:
+Here is what `run.sh` does:
 
 - `docker run` the htipule/ol3 image
 - With an interactive bash session
