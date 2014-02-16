@@ -74,4 +74,9 @@ Known issues
 
 If your OpenLayers 3 fork resides on a NTFS partition, you won't be able to execute `build.py`. This is due to differences between NFS permissions and Unix permissions.
 
+Changelog
+---------
+
+It's in the Wiki.
+
     
