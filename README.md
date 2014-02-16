@@ -19,8 +19,10 @@ Docker (the image was made with version 0.7.6)
 
 It is assumed that you know what Docker is (if not go check their website, which has some nice [tutorials](http://www.docker.io/gettingstarted/)). It is also assumed that you already have a cloned fork of OpenLayers 3.
     
-Setup
------
+Quickstart
+----------
+
+Clone this repo
 
 Pull the image
 
@@ -29,34 +31,28 @@ Pull the image
 Then
 
     ./run.sh <path_to_your_ol3_repo>
+    
+Go to `http://localhost:8000/examples` to see the list of Openlayers 3 examples running.
+
+Go ahead and code whatever you like. To build Openlayers 3 you need to connect through ssh
+
+    ssh root@localhost -p 2200 
+
+Password is `root`. Your directory is mounted under `/workspace`.
+    
+
+More details
+------------
 
 Here is what `run.sh` does:
 
 - `docker run` the htipule/ol3 image
-- With an interactive bash session
 - Forward container ports 8000, 9810 and 22 to the same port of your host (expect for 22 which is forwarded to 2200)
 - mounts `<path_to_your_ol3_repo>` to `/workspace`
-
-
-After running `setup.sh`, you should be on the container prompt as root. Since this container does not provide much tools, I suggest you use SSH to connect to it.
-
-For that, you need to start sshd in the container:
-
-    /usr/sbin/sshd
-        
-Then you can connect with:
-
-    ssh root@127.0.0.1 -p 2200
-    
-Password is `root`.
-
-The directory you provided to `setup.sh` is located in `/worksapce`. From there you can launch the OpenLayers build script (`build.py`). For instance, to launch the examples:
-
-    cd /worksapce
-    ./build.py serve &
-    python -mSimpleHTTPServer &
-
-Now, on your host machine, you can go to http://localhost:8000 and browse the `example` directory.
+- launch supervisord which starts:
+    - an ssh server
+    - `./build.py serve`
+    - `python -mHttpserver`
 
 
 Build the image
