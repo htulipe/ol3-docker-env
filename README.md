@@ -22,13 +22,13 @@ It is assumed that you know what Docker is (if not go check their website, which
 Quickstart
 ----------
 
-Clone this repo
+Download the `run.sh` script (by cloning this repo for instance).
 
-Pull the image
+Pull the image (this is a bit long but you only have to do it once)
 
     sudo docker pull htipule/ol3
 
-Then
+Then, every time you want to code:
 
     ./run.sh <path_to_your_ol3_repo>
     
@@ -46,7 +46,7 @@ More details
 
 Here is what `run.sh` does:
 
-- `docker run` the htipule/ol3 image
+- `sudo docker run` the htipule/ol3 image
 - Forward container ports 8000, 9810 and 22 to the same port of your host (expect for 22 which is forwarded to 2200)
 - mounts `<path_to_your_ol3_repo>` to `/workspace`
 - launch supervisord which starts:
