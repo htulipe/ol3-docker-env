@@ -26,7 +26,7 @@ Clone this repo
 
 Pull the image
 
-    docker pull htipule/ol3
+    sudo docker pull htipule/ol3
 
 Then
 
