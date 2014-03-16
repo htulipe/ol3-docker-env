@@ -39,7 +39,17 @@ Go ahead and code whatever you like. To build Openlayers 3 you need to connect t
     ssh root@localhost -p 2200 
 
 Password is `root`. Your directory is mounted under `/workspace`.
-    
+
+Using the image
+---------------
+
+To upgrade to the latest image, execute the floowing in your host machine:
+
+    sudo docker pull htipule/ol3
+
+If you ever need to restart plovr, you can use `supervisorctl` inside the conatiner:
+
+    supervisorctl restart plovr
 
 More details
 ------------
