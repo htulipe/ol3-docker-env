@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 
-# Twick to install packge that depends on Fuse https://gist.github.com/henrik-muehe/6155333
+# Trick/hack to install packages that depend on Fuse
+# https://gist.github.com/henrik-muehe/6155333
 RUN apt-get -y --force-yes  install libfuse2
 WORKDIR /tmp
 RUN apt-get download fuse
