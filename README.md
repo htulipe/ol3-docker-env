@@ -9,6 +9,7 @@ It uses [Docker](http://docker.io) to provide you with a clean Ubuntu LTS (preci
 - Python 2.7
 - Git
 - PhantomJS (1.9.7)
+- Node.js and the Node Package Manager
 - Pip (and [required modules](https://github.com/openlayers/ol3/blob/master/requirements.txt))
 - JsDoc (3.2.2)
 
@@ -58,18 +59,17 @@ Here is what `run.sh` does:
 
 - `sudo docker run` the htipule/ol3 image
 - Forward container ports 8000, 9810 and 22 to the same port of your host (expect for 22 which is forwarded to 2200)
-- mounts `<path_to_your_ol3_repo>` to `/workspace`
-- launch supervisord which starts:
+- Mounts `<path_to_your_ol3_repo>` to `/workspace`
+- Launch supervisord which starts:
     - an ssh server
     - `./build.py serve`
-    - `python -mHttpserver`
+    - `python -m SimpleHTTPServer`
 
 
 Build the image
 ---------------
 
 You also can build the image yourself if your want.
-
 
 Start by cloning this repo. 
 
@@ -88,5 +88,3 @@ Changelog
 ---------
 
 It's in the Wiki.
-
-    
