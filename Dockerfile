@@ -44,17 +44,12 @@ RUN pip install regex
 RUN pip install pystache
 RUN pip install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 
-#Install JSDoc
-RUN git clone https://github.com/jsdoc3/jsdoc
-RUN cd jsdoc && git checkout v3.2.2 
-RUN ln -s /jsdoc/jsdoc /usr/bin/jsdoc	
-
-#Install ssh
+# Install ssh
 RUN apt-get -y --force-yes install openssh-server
 RUN mkdir /var/run/sshd
 RUN echo "root:root" | chpasswd 
 
-#Install supervisord
+# Install supervisord
 RUN pip install supervisor
 
 #Add supervisord.conf file
