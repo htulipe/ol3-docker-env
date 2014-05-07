@@ -23,7 +23,12 @@ RUN apt-get -y --force-yes install python2.7 python2.7-dev
 RUN apt-get -y --force-yes install git
 
 # Install useful tools 
-RUN apt-get -y --force-yes install wget gcc screen
+RUN apt-get -y --force-yes install software-properties-common wget gcc screen
+
+# Install Node and the Node Packet Manager
+# http://oskarhane.com/create-a-nodejs-docker-io-image/
+RUN add-apt-repository -y ppa:chris-lea/node.js && apt-get update
+RUN apt-get -y --force-yes install nodejs
 
 # Install phantom js 
 RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
