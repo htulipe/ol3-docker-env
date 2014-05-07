@@ -40,9 +40,6 @@ RUN rm -f phantomjs-1.9.7-linux-x86_64.tar.bz2 && rm -rf phantomjs-1.9.7-linux-x
 RUN wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
 RUN rm get-pip.py
-RUN pip install regex
-RUN pip install pystache
-RUN pip install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 
 # Install ssh
 RUN apt-get -y --force-yes install openssh-server
@@ -52,7 +49,13 @@ RUN echo "root:root" | chpasswd
 # Install supervisord
 RUN pip install supervisor
 
-#Add supervisord.conf file
+# Install ol3 Python and Node.js dependencies
+RUN cd /tmp ; git clone https://github.com/openlayers/ol3.git
+WORKDIR /tmp/ol3
+RUN pip install -r requirements.txt
+RUN npm install
+
+# Add supervisord.conf file
 ADD files/supervisord.conf /etc/supervisord.conf
 
 WORKDIR /workspace
