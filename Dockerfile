@@ -60,5 +60,4 @@ ADD files/supervisord.conf /etc/supervisord.conf
 
 WORKDIR /workspace
 
-CMD ["supervisord", "-c", "/etc/supervisord.conf","-n"]
-
+CMD ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
