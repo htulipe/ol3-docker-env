@@ -2,13 +2,14 @@ FROM ubuntu:latest
 
 # Twick to install packge that depends on Fuse https://gist.github.com/henrik-muehe/6155333
 RUN apt-get -y --force-yes  install libfuse2
-RUN cd /tmp ; apt-get download fuse
-RUN cd /tmp ; dpkg-deb -x fuse_* .
-RUN cd /tmp ; dpkg-deb -e fuse_*
-RUN cd /tmp ; rm fuse_*.deb
-RUN cd /tmp ; echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
-RUN cd /tmp ; dpkg-deb -b . /fuse.deb
-RUN cd /tmp ; dpkg -i /fuse.deb
+WORKDIR /tmp
+RUN apt-get download fuse
+RUN dpkg-deb -x fuse_* .
+RUN dpkg-deb -e fuse_*
+RUN rm fuse_*.deb
+RUN echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
+RUN dpkg-deb -b . /fuse.deb
+RUN dpkg -i /fuse.deb
 
 RUN apt-get update
 
