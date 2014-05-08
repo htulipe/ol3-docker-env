@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:precise
 
 # Trick/hack to install packages that depend on Fuse
 # https://gist.github.com/henrik-muehe/6155333
