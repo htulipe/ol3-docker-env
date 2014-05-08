@@ -1,14 +1,16 @@
 FROM ubuntu:latest
 
-# Twick to install packge that depends on Fuse https://gist.github.com/henrik-muehe/6155333
+# Trick/hack to install packages that depend on Fuse
+# https://gist.github.com/henrik-muehe/6155333
 RUN apt-get -y --force-yes  install libfuse2
-RUN cd /tmp ; apt-get download fuse
-RUN cd /tmp ; dpkg-deb -x fuse_* .
-RUN cd /tmp ; dpkg-deb -e fuse_*
-RUN cd /tmp ; rm fuse_*.deb
-RUN cd /tmp ; echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
-RUN cd /tmp ; dpkg-deb -b . /fuse.deb
-RUN cd /tmp ; dpkg -i /fuse.deb
+WORKDIR /tmp
+RUN apt-get download fuse
+RUN dpkg-deb -x fuse_* .
+RUN dpkg-deb -e fuse_*
+RUN rm fuse_*.deb
+RUN echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
+RUN dpkg-deb -b . /fuse.deb
+RUN dpkg -i /fuse.deb
 
 RUN apt-get update
 
@@ -22,7 +24,12 @@ RUN apt-get -y --force-yes install python2.7 python2.7-dev
 RUN apt-get -y --force-yes install git
 
 # Install useful tools 
-RUN apt-get -y --force-yes install wget gcc screen
+RUN apt-get -y --force-yes install software-properties-common wget gcc screen
+
+# Install Node and the Node Packet Manager
+# http://oskarhane.com/create-a-nodejs-docker-io-image/
+RUN add-apt-repository -y ppa:chris-lea/node.js && apt-get update
+RUN apt-get -y --force-yes install nodejs
 
 # Install phantom js 
 RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
@@ -34,27 +41,24 @@ RUN rm -f phantomjs-1.9.7-linux-x86_64.tar.bz2 && rm -rf phantomjs-1.9.7-linux-x
 RUN wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 RUN python get-pip.py
 RUN rm get-pip.py
-RUN pip install regex
-RUN pip install pystache
-RUN pip install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 
-#Install JSDoc
-RUN git clone https://github.com/jsdoc3/jsdoc
-RUN cd jsdoc && git checkout v3.2.2 
-RUN ln -s /jsdoc/jsdoc /usr/bin/jsdoc	
-
-#Install ssh
+# Install ssh
 RUN apt-get -y --force-yes install openssh-server
 RUN mkdir /var/run/sshd
 RUN echo "root:root" | chpasswd 
 
-#Install supervisord
+# Install supervisord
 RUN pip install supervisor
 
-#Add supervisord.conf file
+# Install ol3 Python and Node.js dependencies
+RUN cd /tmp ; git clone https://github.com/openlayers/ol3.git
+WORKDIR /tmp/ol3
+RUN pip install -r requirements.txt
+RUN npm install
+
+# Add supervisord.conf file
 ADD files/supervisord.conf /etc/supervisord.conf
 
 WORKDIR /workspace
 
-CMD ["supervisord", "-c", "/etc/supervisord.conf","-n"]
-
+CMD ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
