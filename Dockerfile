@@ -56,7 +56,6 @@ RUN pip install supervisor
 RUN cd /tmp ; git clone https://github.com/openlayers/ol3.git
 WORKDIR /tmp/ol3
 RUN pip install -r requirements.txt
-RUN npm install
 
 # Add supervisord.conf file
 ADD files/supervisord.conf /etc/supervisord.conf
