@@ -24,7 +24,9 @@ RUN apt-get -y --force-yes install python2.7 python2.7-dev
 RUN apt-get -y --force-yes install git
 
 # Install useful tools 
-RUN apt-get -y --force-yes install software-properties-common wget gcc screen
+RUN apt-get -y --force-yes install wget gcc screen
+RUN apt-get -y --force-yes install bzip2 
+RUN apt-get -y --force-yes install python-software-properties
 
 # Install Node and the Node Packet Manager
 # http://oskarhane.com/create-a-nodejs-docker-io-image/
